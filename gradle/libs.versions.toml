@@ -32,6 +32,8 @@ androidx_compose_ui_graphics = { group = "androidx.compose.ui", name = "ui-graph
 androidx_compose_ui_tooling_preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx_compose_material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx_compose_material_icons_extended = { group = "androidx.compose.material", name = "material-icons-extended" }
+compose_compiler_extension = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
+
 
 #Kotlinx-coroutines
 kotlinx_coroutines_play_services = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-play-services", version.ref = "coroutines" }
@@ -105,5 +107,6 @@ androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 jetbrainsKotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 customAndroidApplication = {id = "dev.sangjun.android.application", version = "unspecified"}
 #android_library = { id = "com.android.library", version.ref = "agp" }
