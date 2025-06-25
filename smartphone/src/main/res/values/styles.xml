@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="@style/Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorPrimary">#FF6200EE</item>
+        <!-- 시스템 바 색상 (여기서 흰색 설정) -->
+        <item name="android:statusBarColor">#000</item>
+    </style>
+</resources>

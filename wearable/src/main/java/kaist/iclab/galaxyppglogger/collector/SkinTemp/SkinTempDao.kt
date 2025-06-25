@@ -3,20 +3,19 @@ package kaist.iclab.galaxyppglogger.collector.SkinTemp
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import kaist.iclab.galaxyppglogger.collector.BaseDao
 
 @Dao
-interface SkinTempDao {
-    @Query("SELECT * FROM skinTempEvent")
-    suspend fun getAll(): List<SkinTempEntity>
-    @Insert
-    suspend fun insertSkinTempEvent(skinTempEntity: SkinTempEntity)
+interface SkinTempDao:BaseDao<SkinTempEntity> {
+    @Query("SELECT * FROM `skin-temp`")
+    override suspend fun getAll(): List<SkinTempEntity>
 
     @Insert
-    suspend fun insertSkinTempEvents(skinTempEntities: List<SkinTempEntity>)
+    override suspend fun insertEvents(events: List<SkinTempEntity>)
 
-    @Query("DELETE FROM skinTempEvent")
-    suspend fun deleteAll()
+    @Query("DELETE FROM `skin-temp`")
+    override suspend fun deleteAll()
 
-    @Query("SELECT * FROM skinTempEvent ORDER BY timestamp DESC LIMIT 1")
-    suspend fun getLast(): SkinTempEntity
+    @Query("SELECT * FROM `skin-temp` ORDER BY timestamp DESC LIMIT 1")
+    override suspend fun getLast(): SkinTempEntity
 }

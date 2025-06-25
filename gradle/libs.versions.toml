@@ -7,6 +7,8 @@ lifecycle_runtime_ktx = "2.9.1"
 activity_compose = "1.10.1"
 compose_bom = "2025.06.00"
 coroutines = "1.8.0"
+accompanist = "0.34.0"
+
 
 wearable = "19.0.0"
 wear_compose = "1.4.1"
@@ -33,6 +35,7 @@ androidx_compose_ui_tooling_preview = { group = "androidx.compose.ui", name = "u
 androidx_compose_material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx_compose_material_icons_extended = { group = "androidx.compose.material", name = "material-icons-extended" }
 compose_compiler_extension = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
+accompanist_systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist" }
 
 
 #Kotlinx-coroutines

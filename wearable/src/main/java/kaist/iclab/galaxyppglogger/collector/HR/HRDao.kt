@@ -3,18 +3,19 @@ package kaist.iclab.galaxyppglogger.collector.HR
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import kaist.iclab.galaxyppglogger.collector.BaseDao
 
 @Dao
-interface HRDao {
-    @Query("SELECT * FROM hrEvent")
-    suspend fun getAll(): List<HREntity>
-    @Insert
-    suspend fun insertHREvent(hrEntity: HREntity)
-    @Insert
-    suspend fun insertHREvents(hrEntities: List<HREntity>)
-    @Query("DELETE FROM hrEvent")
-    suspend fun deleteAll()
+interface HRDao:BaseDao<HREntity> {
+    @Query("SELECT * FROM hr")
+    override suspend fun getAll(): List<HREntity>
 
-    @Query("SELECT * FROM hrEvent ORDER BY timestamp DESC LIMIT 1")
-    suspend fun getLast(): HREntity
+    @Insert
+    override suspend fun insertEvents(events: List<HREntity>)
+
+    @Query("DELETE FROM hr")
+    override suspend fun deleteAll()
+
+    @Query("SELECT * FROM hr ORDER BY timestamp DESC LIMIT 1")
+    override suspend fun getLast(): HREntity
 }

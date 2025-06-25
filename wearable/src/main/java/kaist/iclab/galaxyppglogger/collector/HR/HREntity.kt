@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(
-    tableName = "hrEvent",
+    tableName = "hr",
 )
 data class HREntity(
     @PrimaryKey(autoGenerate = true)

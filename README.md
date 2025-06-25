@@ -28,8 +28,25 @@ Please refer to the official guide below for setup instructions:
 To officially deploy and use this app with Samsung Health features, you must submit a partner request:
 👉 [Samsung Health Partner Application](https://developer.samsung.com/SHealth/partner/MzgxNjUw)
 
-However, for development or trial use, this app leverages **Health Developer Mode**, allowing you to bypass the partner approval process.
-Please follow the instructions to enable Developer Mode on your device.
+However, for development or trial use, this app leverages **Health Developer Mode**, allowing you to bypass the partner approval process. In the wearable app, go to Settings > Applications > Health Platform and tap the top area multiple times to enable [Dev mode].
+
+---
+
+### App Features
+
+At the top of each device, you can see wearable information (the wearable shows its own info, while the smartphone shows the connected wearable's info). Please ensure that both devices display identical information. If they don't match, you should first connect them through the [Galaxy Wearables](https://play.google.com/store/apps/details?id=com.samsung.android.app.watchmanager&pli=1) app.
+
+**Wearable Device Features:**
+- Play & Pause button for turning data collection on and off
+- Flush button for deleting previously collected data
+- Send button for sending collected data to the connected smartphone
+
+**Smartphone Features:**
+- Monitor the data collection status of the currently connected wearable device
+- Receive and export data from the wearable device (Export button located in the menu bar)
+- Tagging functionality to record timestamps of specific events
+- Timer to track elapsed time during experiments
+- Reset tagging info and timer (Reset button located in the menu bar)
 
 ---
 

@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(
-    tableName = "skinTempEvent",
+    tableName = "skin-temp",
 )
 data class SkinTempEntity(
     @PrimaryKey(autoGenerate = true)

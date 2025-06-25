@@ -3,21 +3,19 @@ package kaist.iclab.galaxyppglogger.collector.ACC
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import kaist.iclab.galaxyppglogger.collector.BaseDao
 
 @Dao
-interface AccDao {
-    @Query("SELECT * FROM accEvent")
-    suspend fun getAll(): List<AccEntity>
+interface AccDao: BaseDao<AccEntity> {
+    @Query("SELECT * FROM acc")
+    override suspend fun getAll(): List<AccEntity>
 
     @Insert
-    suspend fun insertAccEvent(accEntity: AccEntity)
+    override suspend fun insertEvents(events: List<AccEntity>)
 
-    @Insert
-    suspend fun insertAccEvents(accEntities: List<AccEntity>)
+    @Query("DELETE FROM acc")
+    override suspend fun deleteAll()
 
-    @Query("DELETE FROM accEvent")
-    suspend fun deleteAll()
-
-    @Query("SELECT * FROM accEvent ORDER BY timestamp DESC LIMIT 1")
-    suspend fun getLast(): AccEntity
+    @Query("SELECT * FROM acc ORDER BY timestamp DESC LIMIT 1")
+    override suspend fun getLast(): AccEntity
 }

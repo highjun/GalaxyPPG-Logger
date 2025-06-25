@@ -16,6 +16,4 @@ dependencies {
     // Datastore
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.androidx.datastore.preferences.core)
-
-    implementation("com.google.firebase:firebase-crashlytics-buildtools:2.9.9")
 }

@@ -28,7 +28,7 @@ internal class AndroidComposeApplicationPlugin : Plugin<Project> {
             extensions.configure<ApplicationExtension> {
                 defaultConfig {
                     namespace= "kaist.iclab.galaxyppglogger"
-                    minSdk = 21
+                    minSdk = 26
                     targetSdk = 35
                     compileSdk = 35
                     applicationId = namespace // Equal name for namespace and applicationId

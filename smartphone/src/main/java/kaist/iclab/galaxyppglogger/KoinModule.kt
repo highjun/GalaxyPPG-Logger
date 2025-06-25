@@ -1,9 +1,12 @@
 package kaist.iclab.galaxyppglogger
 
 import androidx.room.Room
-import kaist.iclab.galaxyppglogger.db.RoomDB
+import kaist.iclab.galaxyppglogger.data.RoomDB
+import kaist.iclab.galaxyppglogger.ui.AbstractViewModel
+import kaist.iclab.galaxyppglogger.ui.RealViewModelImpl
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 
 val koinModule = module {
@@ -19,15 +22,17 @@ val koinModule = module {
     single{
         get<RoomDB>().eventDao()
     }
-    single{
-        get<RoomDB>().recentDao()
+
+    single {
+        get<RoomDB>().wearableStatDao()
     }
 
-    single{
-        DataReceiver(get())
-    }
 
-    viewModel {
-        MainViewModel(get(), get())
+    singleOf(::WearableCommunicationManager)
+//    viewModel<AbstractViewModel>{
+//        FakeViewModelImpl(get(), get())
+//    }
+    viewModel<AbstractViewModel>{
+        RealViewModelImpl(get(), get(), get(), get())
     }
 }
