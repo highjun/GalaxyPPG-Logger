@@ -52,6 +52,7 @@ class PhoneCommunicationManager(
     }
 
     suspend fun getLocalNodeInfo(context: Context): NodeInfo {
+        Log.d(TAG, "getLocalNodeInfo")
         val localNode = Wearable.getNodeClient(context).localNode.await()
         return NodeInfo(
             name = localNode.displayName,

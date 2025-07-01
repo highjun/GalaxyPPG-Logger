@@ -18,6 +18,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 import java.io.File
 
 
@@ -36,8 +37,6 @@ class WearableCommunicationManager(
     private val capabilityName = "PPG_LOGGER"
 
     init {
-        // 초기 확인
-        checkInitialConnection()
         // 로컬 캐패빌리티 등록
         capabilityClient.removeLocalCapability(capabilityName).addOnSuccessListener {
             capabilityClient.addLocalCapability(capabilityName)
@@ -51,12 +50,17 @@ class WearableCommunicationManager(
     }
 
     fun init() {
+        CoroutineScope(Dispatchers.IO).launch {
+            // 초기 확인
+            checkInitialConnection()
+        }
         Wearable.getDataClient(context).addListener(this)
         Wearable.getChannelClient(context).registerChannelCallback(this)
         Wearable.getCapabilityClient(context).addListener(
             this,
             capabilityName
         )
+
     }
 
     fun clear() {
@@ -68,17 +72,23 @@ class WearableCommunicationManager(
         )
     }
 
-    private fun checkInitialConnection() {
-        capabilityClient.getCapability(capabilityName, CapabilityClient.FILTER_REACHABLE)
-            .addOnSuccessListener { capabilityInfo ->
-                updateStateFromNodes(capabilityInfo.nodes)
-            }
-            .addOnFailureListener {
+    private suspend fun checkInitialConnection() {
+        Log.d(TAG, "Checking initial connection for capability: $capabilityName")
+        try {
+            val nodeInfo = capabilityClient.getCapability(capabilityName, CapabilityClient.FILTER_REACHABLE).await()
+            Log.d(TAG, "Initial connection check complete. Nodes: ${nodeInfo.nodes}")
+            if (nodeInfo.nodes.isNotEmpty()) {
+                updateStateFromNodes(nodeInfo.nodes)
+            } else {
                 _connectedNodeInfo.value = null
             }
+        } catch (e: Exception) {
+            Log.e(TAG, "Error checking initial connection", e)
+        }
     }
 
     override fun onCapabilityChanged(capabilityInfo: CapabilityInfo) {
+        Log.d(TAG, "Capability changed: ${capabilityInfo.name}, Nodes: ${capabilityInfo.nodes}")
         updateStateFromNodes(capabilityInfo.nodes)
     }
 
